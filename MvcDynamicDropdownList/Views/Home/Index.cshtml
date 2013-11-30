@@ -1,0 +1,27 @@
+﻿@using System.Web.Mvc.Html
+@model MvcDynamicDropdownList.Models.DdlItems
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>title</title>
+        <script src="~/Scripts/jquery-2.0.3.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    </head>
+    <body>
+        <div>
+            <div>
+                @using (Ajax.BeginForm("DynamicDropDownList", "Home", new AjaxOptions { UpdateTargetId = "result" }))    
+                {
+                    <div id="result"></div>
+                    <input type="submit" value="getData" />
+                }
+            </div>  
+             
+        </div>
+        
+
+    </body>
+</html>
