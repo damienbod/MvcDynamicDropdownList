@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcDynamicDropdownList", "MvcDynamicDropdownList\MvcDynamicDropdownList.csproj", "{67B0F8BD-48B7-4B4E-8E66-0901E2F7D91F}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcDynamicDropdownList", "MvcDynamicDropdownList\MvcDynamicDropdownList.csproj", "{5D522773-4E6A-4809-9E80-BF7DF9019430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67B0F8BD-48B7-4B4E-8E66-0901E2F7D91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67B0F8BD-48B7-4B4E-8E66-0901E2F7D91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67B0F8BD-48B7-4B4E-8E66-0901E2F7D91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67B0F8BD-48B7-4B4E-8E66-0901E2F7D91F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D522773-4E6A-4809-9E80-BF7DF9019430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D522773-4E6A-4809-9E80-BF7DF9019430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D522773-4E6A-4809-9E80-BF7DF9019430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D522773-4E6A-4809-9E80-BF7DF9019430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECD04A78-6115-480C-B30F-58278C826ACC}
 	EndGlobalSection
 EndGlobal
