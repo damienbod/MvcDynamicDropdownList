@@ -5,18 +5,12 @@
 
 <div>
     <div>
- 
 
         <form asp-controller="Home" asp-action="DynamicDropDownList" data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#content">
             <input type="submit" value="getData" />
         </form>
         <div id="content"></div>
 
-        @*@using (Ajax.BeginForm("DynamicDropDownList", "Home", new AjaxOptions { UpdateTargetId = "result" }))
-        {
-            <div id="result"></div>
-            <input type="submit" value="getData" />
-        }*@
     </div>
 
 </div>
