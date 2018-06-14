@@ -2,12 +2,12 @@
     ViewData["Title"] = "Home Page";
 }
 
+<h4>Back Ok, No Confirm Form Resubmission due to async</h4>
 
 <div>
     <div>
-
         <form asp-controller="Home" asp-action="DynamicDropDownList" data-ajax="true" data-ajax-method="POST" data-ajax-mode="replace" data-ajax-update="#content">
-            <input type="submit" value="getData" />
+            <input class="btn btn-primary" type="submit" value="getData" />
         </form>
         <div id="content"></div>
 

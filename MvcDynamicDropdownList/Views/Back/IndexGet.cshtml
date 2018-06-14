@@ -1,0 +1,20 @@
+﻿@model MvcDynamicDropdownList.Models.DdlItems
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Back No Confirm Form Resubmission due to GET Form</h4>
+
+<form asp-controller="Back" asp-action="SomeDataFromAGet" method="get">
+    <button class="btn btn-primary" type="submit">Display</button>
+</form>
+
+@if (Model != null)
+{
+    @await Html.PartialAsync("SomeData", Model)
+}
+else
+{
+    <p>no display items</p>
+}
+

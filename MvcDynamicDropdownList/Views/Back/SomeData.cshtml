@@ -1,0 +1,18 @@
+﻿@model MvcDynamicDropdownList.Models.DdlItems
+
+<p>display items</p>
+@if (Model.Items != null)
+{
+    <div style="width: 200px;">
+        <ol>
+            @foreach (var item in Model.Items)
+            {
+                <li>item.Text</li>
+            }
+        </ol>
+    </div>
+}
+else
+{
+    <p>no display items</p>
+}
