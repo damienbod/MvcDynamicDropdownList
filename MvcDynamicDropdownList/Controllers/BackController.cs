@@ -19,7 +19,7 @@ namespace MvcDynamicDropdownList.Controllers
 
         // SomeDataFromAPost
         [HttpPost]
-        public IActionResult SomeDataFromAPost(string dummyData)
+        public IActionResult SomeDataFromAPost()
         {
             var model = new DdlItems
             {
@@ -34,7 +34,7 @@ namespace MvcDynamicDropdownList.Controllers
 
         // SomeDataFromAPostGet
         [HttpGet]
-        public IActionResult SomeDataFromAGet(string dummyData)
+        public IActionResult SomeDataFromAGet()
         {
             var model = new DdlItems
             {
