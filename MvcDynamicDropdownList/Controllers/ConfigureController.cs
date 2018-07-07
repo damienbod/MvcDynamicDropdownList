@@ -2,12 +2,19 @@
 using AspNetCoreMvcDynamicViews.Views.Shared.Components.ConfigueSectionA;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcDynamicDropdownList.Services;
 using System.Collections.Generic;
 
 namespace AspNetCoreMvcDynamicViews.Controllers
 {
     public class ConfigureController : Controller
     {
+        private readonly ConfigureService _configureService;
+
+        public ConfigureController(ConfigureService configureService)
+        {
+            _configureService = configureService;
+        }
         [HttpGet]
         public IActionResult Index()
         {
@@ -33,24 +40,30 @@ namespace AspNetCoreMvcDynamicViews.Controllers
             {
                 ConfigueSectionAGetModel = configueSectionAGetModel
             };
-            // Do create logic
 
-            return Redirect("Update/3");
+            var id = _configureService.AddConfigueSectionAModel(configueSectionAGetModel);
+
+            return Redirect($"Update/{id}");
         }
 
         [HttpGet]
         public IActionResult Update([FromRoute] int id)
         {
             // GET data from database
+            var data = _configureService.GetConfigueSectionAModel(id);
             var model = new ConfigureSectionsUpdateModel
             {
-                ConfigueSectionAGetModel = new ConfigueSectionAGetModel(),
+                ConfigueSectionAGetModel = new ConfigueSectionAGetModel
+                {
+                    LengthA = data.LengthA,
+                    LengthB = data.LengthB,
+                    LengthAB = data.LengthAB,
+                    PartType = data.PartType
+                },
                 Id = id
             };
 
             UpdateSelectType(model.ConfigueSectionAGetModel);
-
-            // do Update logic
 
             return View(model);
         }
@@ -65,7 +78,6 @@ namespace AspNetCoreMvcDynamicViews.Controllers
                 Id = id
             };
 
-            UpdateSelectType(model.ConfigueSectionAGetModel);
             UpdateSelectType(model.ConfigueSectionAGetModel);
 
             // do Update logic

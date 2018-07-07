@@ -12,7 +12,7 @@
         $(function () {
             $('#partial').on('change', '.updateevent', function (el) {
                 $.ajax({
-                    url: "Configure/UpdateViewData",
+                    url: window.location.origin + "/Configure/UpdateViewData",
                     type: "post",
                     data: $("#partialform").serialize(), //if you need to post Model data, use this
                     success: function (result) {
