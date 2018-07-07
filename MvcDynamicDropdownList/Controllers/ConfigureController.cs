@@ -27,11 +27,15 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ConfigureSectionsModel configureSectionsModel)
+        public IActionResult Create(ConfigueSectionAGetModel configueSectionAGetModel)
         {
-            // Update or whatever
-            // configureSectionsModel.ConfigueSectionAGetModel
-            return Ok(configureSectionsModel);
+            var model = new ConfigureSectionsModel
+            {
+                ConfigueSectionAGetModel = configueSectionAGetModel
+            };
+            // Do create logic
+
+            return Redirect("Index");
         }
 
         /// <summary>
@@ -42,6 +46,25 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         [HttpPost]
         public IActionResult UpdateViewData(ConfigueSectionAGetModel configueSectionAGetModel)
         {
+            UpdateLengthA_LengthB(configueSectionAGetModel);
+            UpdateSelectType(configueSectionAGetModel);
+
+            // save to Db if required
+
+            return PartialView("PartialConfigure", configueSectionAGetModel);
+        }
+
+        private void UpdateLengthA_LengthB(ConfigueSectionAGetModel configueSectionAGetModel)
+        {
+            if (configueSectionAGetModel.LengthAB != configueSectionAGetModel.LengthA + configueSectionAGetModel.LengthB)
+            {
+                configueSectionAGetModel.LengthAB = configueSectionAGetModel.LengthA + configueSectionAGetModel.LengthB;
+            }
+        }
+
+        private void UpdateSelectType(ConfigueSectionAGetModel configueSectionAGetModel)
+        {
+
             if (configueSectionAGetModel.LengthAB < 200)
             {
                 configueSectionAGetModel.PartTypeItems = new List<SelectListItem>
@@ -59,8 +82,7 @@ namespace AspNetCoreMvcDynamicViews.Controllers
                     new SelectListItem{ Value = "LL5", Text = "LL5" }
                 };
             }
-
-            return PartialView("PartialConfigure", configueSectionAGetModel);
         }
+
     }
 }
