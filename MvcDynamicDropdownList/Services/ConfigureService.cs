@@ -21,5 +21,17 @@ namespace MvcDynamicDropdownList.Services
             DummayData.Add(count, configueSectionAModel);
             return count;
         }
+
+        public void UpdateConfigueSectionAModel(int id, ConfigueSectionAModel configueSectionAModel)
+        {
+            var data = GetConfigueSectionAModel(id);
+
+            data.LengthA = configueSectionAModel.LengthA;
+            data.LengthB = configueSectionAModel.LengthB;
+            data.LengthAB = configueSectionAModel.LengthAB;
+            data.PartType = configueSectionAModel.PartType;
+
+            DummayData[id] = data;
+        }
     }
 }

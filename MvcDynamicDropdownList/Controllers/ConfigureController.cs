@@ -71,7 +71,6 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         [HttpPost]
         public IActionResult Update(ConfigueSectionAGetModel configueSectionAGetModel, [FromRoute] int id)
         {
-            // GET data from database
             var model = new ConfigureSectionsUpdateModel
             {
                 ConfigueSectionAGetModel = configueSectionAGetModel,
@@ -80,7 +79,7 @@ namespace AspNetCoreMvcDynamicViews.Controllers
 
             UpdateSelectType(model.ConfigueSectionAGetModel);
 
-            // do Update logic
+            _configureService.UpdateConfigueSectionAModel(id, model.ConfigueSectionAGetModel);
 
             return View(model);
         }
