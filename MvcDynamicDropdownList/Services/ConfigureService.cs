@@ -1,4 +1,5 @@
 ﻿using AspNetCoreMvcDynamicViews.Views.Shared.Components.ConfigueSectionA;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,37 @@ namespace MvcDynamicDropdownList.Services
             data.PartType = configueSectionAModel.PartType;
 
             DummayData[id] = data;
+        }
+
+
+        public void UpdateLengthA_LengthB(ConfigueSectionAGetModel configueSectionAGetModel)
+        {
+            if (configueSectionAGetModel.LengthAB != configueSectionAGetModel.LengthA + configueSectionAGetModel.LengthB)
+            {
+                configueSectionAGetModel.LengthAB = configueSectionAGetModel.LengthA + configueSectionAGetModel.LengthB;
+            }
+        }
+
+        public void UpdateSelectType(ConfigueSectionAGetModel configueSectionAGetModel)
+        {
+
+            if (configueSectionAGetModel.LengthAB < 200)
+            {
+                configueSectionAGetModel.PartTypeItems = new List<SelectListItem>
+                {
+                    new SelectListItem{ Value = "LL1", Text = "LL1" },
+                    new SelectListItem{ Value = "LL2", Text = "LL2" },
+                    new SelectListItem{ Value = "LL3", Text = "LL3" }
+                };
+            }
+            else
+            {
+                configueSectionAGetModel.PartTypeItems = new List<SelectListItem>
+                {
+                    new SelectListItem{ Value = "LL4", Text = "LL4" },
+                    new SelectListItem{ Value = "LL5", Text = "LL5" }
+                };
+            }
         }
     }
 }

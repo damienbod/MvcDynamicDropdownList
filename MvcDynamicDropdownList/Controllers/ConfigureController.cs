@@ -15,6 +15,11 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         {
             _configureService = configureService;
         }
+
+        /// <summary>
+        /// Get a new object, used for the create
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Index()
         {
@@ -33,6 +38,11 @@ namespace AspNetCoreMvcDynamicViews.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// create a new object
+        /// </summary>
+        /// <param name="configueSectionAGetModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Create(ConfigueSectionAGetModel configueSectionAGetModel)
         {
@@ -46,6 +56,11 @@ namespace AspNetCoreMvcDynamicViews.Controllers
             return Redirect($"Update/{id}");
         }
 
+        /// <summary>
+        /// Get an update object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Update([FromRoute] int id)
         {
@@ -63,11 +78,17 @@ namespace AspNetCoreMvcDynamicViews.Controllers
                 Id = id
             };
 
-            UpdateSelectType(model.ConfigueSectionAGetModel);
+            _configureService.UpdateSelectType(model.ConfigueSectionAGetModel);
 
             return View(model);
         }
 
+        /// <summary>
+        /// Do an update
+        /// </summary>
+        /// <param name="configueSectionAGetModel"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Update(ConfigueSectionAGetModel configueSectionAGetModel, [FromRoute] int id)
         {
@@ -77,8 +98,7 @@ namespace AspNetCoreMvcDynamicViews.Controllers
                 Id = id
             };
 
-            UpdateSelectType(model.ConfigueSectionAGetModel);
-
+            _configureService.UpdateSelectType(model.ConfigueSectionAGetModel);
             _configureService.UpdateConfigueSectionAModel(id, model.ConfigueSectionAGetModel);
 
             return View(model);
@@ -92,43 +112,10 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         [HttpPost]
         public IActionResult UpdateViewData(ConfigueSectionAGetModel configueSectionAGetModel)
         {
-            UpdateLengthA_LengthB(configueSectionAGetModel);
-            UpdateSelectType(configueSectionAGetModel);
-
-            // save to Db if required
-
+            _configureService.UpdateLengthA_LengthB(configueSectionAGetModel);
+            _configureService.UpdateSelectType(configueSectionAGetModel);
             return PartialView("PartialConfigure", configueSectionAGetModel);
         }
-
-        private void UpdateLengthA_LengthB(ConfigueSectionAGetModel configueSectionAGetModel)
-        {
-            if (configueSectionAGetModel.LengthAB != configueSectionAGetModel.LengthA + configueSectionAGetModel.LengthB)
-            {
-                configueSectionAGetModel.LengthAB = configueSectionAGetModel.LengthA + configueSectionAGetModel.LengthB;
-            }
-        }
-
-        private void UpdateSelectType(ConfigueSectionAGetModel configueSectionAGetModel)
-        {
-
-            if (configueSectionAGetModel.LengthAB < 200)
-            {
-                configueSectionAGetModel.PartTypeItems = new List<SelectListItem>
-                {
-                    new SelectListItem{ Value = "LL1", Text = "LL1" },
-                    new SelectListItem{ Value = "LL2", Text = "LL2" },
-                    new SelectListItem{ Value = "LL3", Text = "LL3" }
-                };
-            }
-            else
-            {
-                configueSectionAGetModel.PartTypeItems = new List<SelectListItem>
-                {
-                    new SelectListItem{ Value = "LL4", Text = "LL4" },
-                    new SelectListItem{ Value = "LL5", Text = "LL5" }
-                };
-            }
-        }
-
+  
     }
 }
