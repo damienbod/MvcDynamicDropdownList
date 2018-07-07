@@ -1,0 +1,63 @@
+﻿@using  AspNetCoreMvcDynamicViews.Models
+@model ConfigureSectionsModel
+@{
+    ViewData["Title"] = "Configure View";
+}
+
+<div style="padding:20px;"></div>
+
+@section Scripts{
+    <script language="javascript">
+        $(document).ready(function () {
+            $("#pButton").click(function () {
+                $.ajax({
+                    url: "Configure/UpdateViewData",
+                    type: "post",
+                    data: $("#partialform").serialize(), //if you need to post Model data, use this
+                    success: function (result) {
+                        $("#partial").html(result);
+                    }
+                });
+            })
+        });
+
+    </script>
+}
+
+<form id="partialform">
+    <div id="partial">
+        <partial name="PartialConfigure" model="Model.ConfigueSectionAGetModel" />
+    </div>
+</form>
+
+<button class="btn btn-primary col-sm-10" id="pButton">Test</button>
+
+<div class="col-md-12">
+
+
+    @*<form asp-controller="Configure" asp-action="UpdateViewData"
+              data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-update="#content">
+
+            <input class="btn btn-primary" type="submit" value="testData" />
+        </form>
+        <div id="content">
+            <partial name="PartialConfigure" model="Model.ConfigueSectionAGetModel" />
+        </div>*@
+
+</div>
+
+
+<form asp-controller="Configure" asp-action="Update" method="post">
+    <div class="col-md-12">
+
+        <input type="hidden" asp-for="@Model.ConfigueSectionAGetModel" />
+        <div class="form-group row">
+            <button class="btn btn-primary col-sm-10" type="submit">Update</button>
+        </div>
+
+    </div>
+
+</form>
