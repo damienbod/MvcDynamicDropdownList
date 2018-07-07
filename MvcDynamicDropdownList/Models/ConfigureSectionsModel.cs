@@ -5,4 +5,12 @@ namespace AspNetCoreMvcDynamicViews.Models
     {
         public ConfigueSectionAGetModel ConfigueSectionAGetModel { get; set; }
     }
+
+    public class ConfigureSectionsUpdateModel
+    {
+        public int Id { get; set; }
+
+        public ConfigueSectionAGetModel ConfigueSectionAGetModel { get; set; }
+    }
 }
+

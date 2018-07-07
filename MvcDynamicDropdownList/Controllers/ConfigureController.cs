@@ -35,7 +35,42 @@ namespace AspNetCoreMvcDynamicViews.Controllers
             };
             // Do create logic
 
-            return Redirect("Index");
+            return Redirect("Update/3");
+        }
+
+        [HttpGet]
+        public IActionResult Update([FromRoute] int id)
+        {
+            // GET data from database
+            var model = new ConfigureSectionsUpdateModel
+            {
+                ConfigueSectionAGetModel = new ConfigueSectionAGetModel(),
+                Id = id
+            };
+
+            UpdateSelectType(model.ConfigueSectionAGetModel);
+
+            // do Update logic
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Update(ConfigueSectionAGetModel configueSectionAGetModel, [FromRoute] int id)
+        {
+            // GET data from database
+            var model = new ConfigureSectionsUpdateModel
+            {
+                ConfigueSectionAGetModel = configueSectionAGetModel,
+                Id = id
+            };
+
+            UpdateSelectType(model.ConfigueSectionAGetModel);
+            UpdateSelectType(model.ConfigueSectionAGetModel);
+
+            // do Update logic
+
+            return View(model);
         }
 
         /// <summary>
