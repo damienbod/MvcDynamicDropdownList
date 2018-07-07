@@ -27,13 +27,18 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ConfigueSectionAModel configueSectionAModel)
+        public IActionResult Update(ConfigureSectionsModel configureSectionsModel)
         {
-            // save data to db...
-            //return View("Index", configueSectionAModel);
-            return Ok();
+            // Update or whatever
+            // configureSectionsModel.ConfigueSectionAGetModel
+            return Ok(configureSectionsModel);
         }
 
+        /// <summary>
+        /// async partial update, set your properties here
+        /// </summary>
+        /// <param name="configueSectionAGetModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult UpdateViewData(ConfigueSectionAGetModel configueSectionAGetModel)
         {

@@ -21,6 +21,17 @@
             })
         });
 
+        $('#updateevent_a').bind('input', function () {
+            $.ajax({
+                url: "Configure/UpdateViewData",
+                type: "post",
+                data: $("#partialform").serialize(), //if you need to post Model data, use this
+                success: function (result) {
+                    $("#partial").html(result);
+                }
+            });
+        });
+
     </script>
 }
 
