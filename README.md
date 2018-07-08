@@ -1,3 +1,6 @@
+# Updating part of an ASP.NET Core MVC View which uses Forms
+
+https://damienbod.com/2018/07/08/updating-part-of-an-asp-net-core-mvc-view-which-uses-forms/
 
 # ASP.NET Core MVC Form Requests and the Browser Back button
 
