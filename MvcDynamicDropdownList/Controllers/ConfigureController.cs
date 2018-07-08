@@ -89,6 +89,7 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         /// <param name="configueSectionAGetModel"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateViewData(ConfigueSectionAGetModel configueSectionAGetModel)
         {
             _configureService.UpdateLengthA_LengthB(configueSectionAGetModel);
