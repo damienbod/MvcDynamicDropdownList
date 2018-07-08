@@ -1,9 +1,7 @@
 ﻿using AspNetCoreMvcDynamicViews.Models;
 using AspNetCoreMvcDynamicViews.Views.Shared.Components.ConfigueSectionA;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcDynamicDropdownList.Services;
-using System.Collections.Generic;
 
 namespace AspNetCoreMvcDynamicViews.Controllers
 {
@@ -23,19 +21,7 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var model = new ConfigureSectionsModel
-            {
-                ConfigueSectionAGetModel = new ConfigueSectionAGetModel()
-            };
-
-            model.ConfigueSectionAGetModel.PartTypeItems = new List<SelectListItem>
-            {
-                new SelectListItem{ Value = "LL1", Text = "LL1" },
-                new SelectListItem{ Value = "LL2", Text = "LL2" },
-                new SelectListItem{ Value = "LL3", Text = "LL3" }
-            };
-
-            return View(model);
+            return View(_configureService.GetDefaultModel());
         }
 
         /// <summary>
@@ -44,6 +30,7 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         /// <param name="configueSectionAGetModel"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(ConfigueSectionAGetModel configueSectionAGetModel)
         {
             var model = new ConfigureSectionsModel
@@ -51,9 +38,13 @@ namespace AspNetCoreMvcDynamicViews.Controllers
                 ConfigueSectionAGetModel = configueSectionAGetModel
             };
 
-            var id = _configureService.AddConfigueSectionAModel(configueSectionAGetModel);
+            if (ModelState.IsValid)
+            {
+                var id = _configureService.AddConfigueSectionAModel(configueSectionAGetModel);
+                return Redirect($"Update/{id}");
+            }
 
-            return Redirect($"Update/{id}");
+            return View("Index", model);
         }
 
         /// <summary>
@@ -64,22 +55,12 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         [HttpGet]
         public IActionResult Update([FromRoute] int id)
         {
-            // GET data from database
-            var data = _configureService.GetConfigueSectionAModel(id);
-            var model = new ConfigureSectionsUpdateModel
+            if (id == 0)
             {
-                ConfigueSectionAGetModel = new ConfigueSectionAGetModel
-                {
-                    LengthA = data.LengthA,
-                    LengthB = data.LengthB,
-                    LengthAB = data.LengthAB,
-                    PartType = data.PartType
-                },
-                Id = id
-            };
+                return NotFound();
+            }
 
-            _configureService.UpdateSelectType(model.ConfigueSectionAGetModel);
-
+            var model = _configureService.GetConfigureSectionsUpdateModel(id);
             return View(model);
         }
 
@@ -90,17 +71,15 @@ namespace AspNetCoreMvcDynamicViews.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Update(ConfigueSectionAGetModel configueSectionAGetModel, [FromRoute] int id)
         {
-            var model = new ConfigureSectionsUpdateModel
+            if (id == 0)
             {
-                ConfigueSectionAGetModel = configueSectionAGetModel,
-                Id = id
-            };
+                return NotFound();
+            }
 
-            _configureService.UpdateSelectType(model.ConfigueSectionAGetModel);
-            _configureService.UpdateConfigueSectionAModel(id, model.ConfigueSectionAGetModel);
-
+            var model = _configureService.UpdateConfigueSectionAModel(id, configueSectionAGetModel);
             return View(model);
         }
 
