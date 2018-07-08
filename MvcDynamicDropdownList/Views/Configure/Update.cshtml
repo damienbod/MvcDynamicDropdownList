@@ -1,0 +1,38 @@
+﻿@using  AspNetCoreMvcDynamicViews.Models
+@model ConfigureSectionsUpdateModel
+@{
+    ViewData["Title"] = "Configure View";
+}
+
+<div style="padding:20px;"></div>
+
+@section Scripts{
+    <script language="javascript">
+
+        $(function () {
+            $('#partial').on('change', '.updateevent', function (el) {
+                $.ajax({
+                    url: window.location.origin + "/Configure/UpdateViewData",
+                    type: "post",
+                    data: $("#partialform").serialize(), 
+                    success: function (result) {
+                        $("#partial").html(result);
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+
+<form id="partialform" asp-controller="Configure" asp-action="Update" asp-route-id="@Model.Id" method="post">
+    <div class="col-md-12">
+        <div id="partial">
+            <partial name="PartialConfigure" model="Model.ConfigueSectionAGetModel" />
+        </div>
+
+        <div class="form-group row">
+            <button class="btn btn-primary col-sm-12" type="submit">Update</button>
+        </div>
+    </div>
+</form>

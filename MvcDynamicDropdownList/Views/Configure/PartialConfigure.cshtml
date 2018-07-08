@@ -1,0 +1,23 @@
+﻿@using AspNetCoreMvcDynamicViews.Views.Shared.Components.ConfigueSectionA
+@model ConfigueSectionAGetModel
+
+<div class="form-group row">
+    <label class="col-sm-5 col-form-label font-weight-bold">LengthA</label>
+    <input class="col-sm-5 form-control updateevent" asp-for="LengthA" type="number" min="5" max="400" />
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-5 col-form-label font-weight-bold">@Model.LengthB</label>
+    <input class="col-sm-5 form-control updateevent" asp-for="LengthB" type="number" min="5" max="400" />
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-5 col-form-label font-weight-bold">LengthAB</label>
+    <label class="col-sm-5 form-control ">@Model.LengthAB</label>
+    <input readonly asp-for="LengthAB" value="@Model.LengthAB"  type="hidden" />
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-5 col-form-label font-weight-bold">PartType</label>
+    <select class="col-sm-5 form-control updateevent" asp-items="Model.PartTypeItems" asp-for="PartType" type="text"></select>
+</div>
