@@ -14,7 +14,7 @@
                 $.ajax({
                     url: window.location.origin + "/Configure/UpdateViewData",
                     type: "post",
-                    data: $("#partialform").serialize(), //if you need to post Model data, use this
+                    data: $("#partialform").serialize(), 
                     success: function (result) {
                         $("#partial").html(result);
                     }
