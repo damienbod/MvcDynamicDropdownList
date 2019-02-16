@@ -12,6 +12,8 @@ http://damienbod.wordpress.com/2013/12/01/mvc-loading-a-dynamic-list-in-a-view/
 
 ## History
 
+2019-02-16 Updated to .NET Core 2.2
+
 2018-07-08 added ajax partial view updates
 
 2018-06-15 added some form requests.
